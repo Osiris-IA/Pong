@@ -1,4 +1,4 @@
-# Projet d'Exemple: Comprendre les Makefiles
+# Projet d'Exemple: Comprendre les Makefiles 
 
 Ce projet sert d'exemple pour expliquer le fonctionnement d'un Makefile. Il s'agit d'un petit jeu nommé "monjeu" compilé en C++.
 
