@@ -1,6 +1,5 @@
 #include "input.hpp"
 
-// constructeur
 Input::Input()
 {
     button.left = button.right = button.up = button.down = button.escape = button.space = button.p = button.enter = button.t = false;

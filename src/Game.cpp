@@ -66,7 +66,6 @@ Game::Game() : window(sf::VideoMode({WIN_WIDTH, WIN_HEIGHT}), "Pong SFML"),
     // Charge aussi la texture SPACE
     if (!texSpace.loadFromFile("assets/espace.jpg"))
     {
-        // Optionnel : gère l'erreur
     }
 }
 
@@ -137,13 +136,11 @@ void Game::update()
     }
     tPressedLastFrame = input.GetButton().t;
 
-    // Comportements CONTINUS selon le thème
     if (currentTheme == Theme::FOOTBALL)
     {
-        // Le "Joueur Adverse" : patrouille verticale au centre
         obstacleTimer += 0.02f;
         float newY = (WIN_HEIGHT / 2) + std::sin(obstacleTimer) * 150.0f;
-        obstacle.setPosition(sf::Vector2f(WIN_WIDTH / 2, newY)); // ← Ajoute sf::Vector2f()
+        obstacle.setPosition(sf::Vector2f(WIN_WIDTH / 2, newY)); 
     }
 
 
@@ -166,7 +163,6 @@ void Game::render()
 {
     window.clear(sf::Color::Black);
 
-    // Dessine le fond AVANT tout (pour tous les états sauf MENU)
     if (currentState != GameState::MENU && backgroundSprite)
     {
         window.draw(*backgroundSprite);
@@ -181,7 +177,6 @@ void Game::render()
         txt.setString(std::to_string(scoreJ1) + " | " + std::to_string(scoreJ2));
         txt.setPosition(sf::Vector2f((WIN_WIDTH / 2) - 40, 10));
 
-        // Change juste les couleurs selon le thème
         if (currentTheme == Theme::FOOTBALL)
         {
             rectangleShapeLeft.setFillColor(sf::Color::White);
@@ -215,91 +210,3 @@ void Game::render()
 
     window.display();
 }
-
-// void Game::UpdateBall()
-// {
-//     ballPos.x += ballDir.x * ballSpeed;
-//     ballPos.y += ballDir.y * ballSpeed;
-
-//     if ((ballPos.x < posRaquetteLeftX + raquettesWidth && ballPos.x > posRaquetteLeftX &&
-//          ballPos.y < posRaquetteLeftY + raquettesHeight && ballPos.y > posRaquetteLeftY) ||
-//         (ballPos.x > posRaquetteRightX - raquettesWidth && ballPos.x < posRaquetteRightX &&
-//          (ballPos.y + 7 < posRaquetteRightY + raquettesHeight && ballPos.y + 7 > posRaquetteRightY)))
-//     {
-//         ballDir.x *= -1;
-//         ballSpeed += 0.1f;
-//         shakeTimer = 1.0f; // Déclenche le tremblement pendant quelques frames
-//     }
-
-//     if (ballPos.x < 0)
-//     {
-//         scoreJ2++;
-//         ballPos = sf::Vector2f(WIN_WIDTH / 2.0f, WIN_HEIGHT / 2.0f);
-//         ballDir.x = std::abs(ballDir.x);
-//         ballDir.y *= -1;
-//         ballSpeed = 1.5f;
-//         shakeTimer = 1.0f; // Déclenche le tremblement pendant quelques frames
-
-//         setText(txt, std::to_string(scoreJ1) + " | " + std::to_string(scoreJ2));
-//     }
-
-//     if (ballPos.x > WIN_WIDTH)
-//     {
-//         scoreJ1++;
-//         ballPos = sf::Vector2f(WIN_WIDTH / 2.0f, WIN_HEIGHT / 2.0f);
-//         ballDir.x = -std::abs(ballDir.x);
-//         ballDir.y *= -1;
-//         ballSpeed = 1.5f;
-//         shakeTimer = 1.0f; // Déclenche le tremblement pendant quelques frames
-
-//         setText(txt, std::to_string(scoreJ1) + " | " + std::to_string(scoreJ2));
-//     }
-
-//     if (ballPos.y > WIN_HEIGHT || ballPos.y < 0)
-//         ballDir.y *= -1;
-// }
-
-// void Game::RaquetteIA()
-// {
-//     posRaquetteRightY = static_cast<int>(ballPos.y);
-// }
-
-// void Game::CheckBtn()
-// {
-//     if (input.GetButton().up == true)
-//     {
-//         posRaquetteLeftY -= raquettesSpeed;
-//         if (posRaquetteLeftY < 0)
-//             posRaquetteLeftY = 0;
-//     }
-//     if (input.GetButton().down == true)
-//     {
-//         posRaquetteLeftY += raquettesSpeed;
-//         if (posRaquetteLeftY + raquettesHeight > WIN_HEIGHT)
-//             posRaquetteLeftY = WIN_HEIGHT - raquettesHeight;
-//     }
-
-//     if (input.GetButton().left == true)
-//     {
-//         posRaquetteRightY -= raquettesSpeed;
-//         if (posRaquetteRightY < 0)
-//             posRaquetteRightY = 0;
-//     }
-//     if (input.GetButton().right == true)
-//     {
-//         posRaquetteRightY += raquettesSpeed;
-//         if (posRaquetteRightY + raquettesHeight > WIN_HEIGHT)
-//             posRaquetteRightY = WIN_HEIGHT - raquettesHeight;
-//     }
-//     if (input.GetButton().escape == true)
-//         window.close();
-// }
-
-// void Game::setText(sf::Text &txt, sf::String str)
-// {
-//     txt.setFont(font);
-//     txt.setString(str);
-//     txt.setCharacterSize(26);
-//     txt.setFillColor(sf::Color::White);
-//     txt.setPosition(sf::Vector2f((WIN_WIDTH / 2) - 40, 10));
-// }

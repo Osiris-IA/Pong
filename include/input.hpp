@@ -11,10 +11,9 @@ public:
         bool left, right, up, down, escape, space, p, enter, t;
     };
 
-    // Proto du constructeur
     Input();
 
-    const Button &GetButton(void) const; // return l'état d'un boutton
+    const Button &GetButton(void) const; 
     void InputHandler(const sf::Event &event, sf::RenderWindow &window);
 
 private:
