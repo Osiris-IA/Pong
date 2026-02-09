@@ -41,15 +41,13 @@ private:
     float shakeIntensity = 5.0f;
     float obstacleTimer = 0.0f;
 
-    Theme currentTheme = Theme::FOOTBALL; // Thème par défaut
+    Theme currentTheme = Theme::FOOTBALL; 
 
-    // Textures pour les fonds
     sf::Texture texFootball;
     std::optional<sf::Sprite> backgroundSprite;
     sf::Texture texSpace;
 
-    // Textures pour les objets (optionnel)
-    sf::Texture texBallSpace; // Pour transformer la balle en comète
+    sf::Texture texBallSpace;
 
     // ball
     sf::Vector2f ballPos;

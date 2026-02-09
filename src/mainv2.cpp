@@ -108,7 +108,7 @@ int main()
         while (const std::optional<Event> event = window.pollEvent())
         {
             if (event->is<sf::Event::Closed>())
-                window.close(); // Ferme si on clique sur X
+                window.close(); 
             input.InputHandler(*event, window);
         }
         CheckBtn();
